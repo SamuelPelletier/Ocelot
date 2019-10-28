@@ -58,12 +58,6 @@
         <div class="collapse navbar-collapse">
             <ul class="navbar-nav ml-auto">
                 <li class="nav-item">
-                        <a href='planning.html'>Planning</a>
-                </li>
-                <li class="nav-item">
-                    <a class='menu-chat'>Chat On/Off</a>
-                </li>
-                <li class="nav-item">
                     <div>
                         <div id="MyClockDisplay" class="clock"></div>
                     </div>
@@ -84,31 +78,8 @@
 </div>
 <div class="page-header header-filter clear-filter dark-filter row" data-parallax="true"
      style="background-image: url('./assets/img/bg2.jpg');">
-    <div class="stream-container container">
-        <div class="row">
-            <div class="col-md">
-
-                <!-- Add a placeholder for the Twitch embed -->
-
-                <iframe
-                        src="https://player.twitch.tv/?channel=thefrenchtonneau"
-                        height="720"
-                        width="1280"
-                        frameborder="0"
-                        scrolling="no"
-                        allowfullscreen="true" class="stream">
-                </iframe>
-            </div>
-            <div class="col-md-3">
-                <iframe frameborder="0"
-                        scrolling="no"
-                        id="chat_embed"
-                        src="https://www.twitch.tv/embed/thefrenchtonneau/chat"
-                        height="500"
-                        width="350" class="chat">
-                </iframe>
-            </div>
-        </div>
+    <div class="container">
+            <div id="scheduler"></div>
     </div>
 </div>
 <!--   Core JS Files   -->
@@ -123,6 +94,13 @@
 <!-- Control Center for Material Kit: parallax effects, scripts for the example pages etc -->
 <script src="./assets/js/material-kit.js?v=2.0.6" type="text/javascript"></script>
 <script src="./assets/js/core/main.js" type="text/javascript"></script>
+<link rel="stylesheet" href="//kendo.cdn.telerik.com/2015.3.1111/styles/kendo.common-material.min.css" />
+<link rel="stylesheet" href="//kendo.cdn.telerik.com/2015.3.1111/styles/kendo.material.min.css" />
+
+<script src="//kendo.cdn.telerik.com/2015.3.1111/js/jquery.min.js"></script>
+<script src="//kendo.cdn.telerik.com/2015.3.1111/js/kendo.all.min.js"></script>
+<script src="//kendo.cdn.telerik.com/2015.3.1111/js/kendo.timezones.min.js"></script>
+<script src="//kendo.cdn.telerik.com/2019.3.1023/js/messages/kendo.messages.fr-FR.min.js"></script>
 <script>
     $(document).ready(function () {
         //init DateTimePickers
@@ -140,6 +118,21 @@
             }, 1000);
         }
     }
+
+$.getJSON('agenda.json', function(agenda){
+    // https://docs.telerik.com/kendo-ui/api/javascript/ui/scheduler#fields
+    $('#scheduler').kendoScheduler({
+        date: new Date(),
+        height: 600,
+        views: [
+            { type: "agenda", title: "Agenda" },
+            { type: "week", selected: true },
+        ],
+        dataSource: agenda.data,
+        editable: false
+    })
+})
+
 
 </script>
 </body>

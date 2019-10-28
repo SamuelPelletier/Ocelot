@@ -1,4 +1,4 @@
-.navbar{
+.navbar, .navbar a{
     color: darkorange !important;
 }
 
@@ -6,8 +6,12 @@
     color: darkorange;
 }
 
+.nav-item{
+    padding:0 1em;
+}
+
 .menu-chat {
-    padding-right: 45px;
+    white-space: nowrap;
 }
 
 .page-header > .container {
@@ -95,6 +99,7 @@ iframe {
     color:darkorange;
     font-family: Orbitron;
     letter-spacing: 7px;
+    width: 140px;
 }
 
 
